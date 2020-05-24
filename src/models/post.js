@@ -5,22 +5,20 @@ function getAllPost() {
     return JSON.parse(JSON.stringify(posts));
 }
 
-function addPost(post) {
-    // 不再从 req.body 中取数据了，改为从 post 中取数据
-    const { author, content} = post;
-    const newPost = { author, content, id:currentID++ };
-    posts.push(newPost);
-    return newPost;
-}
-
 function getPostById(id) {
     return posts.find(function(i) {
         return i.id === Number(id);
     })
 }
 
+function addPost(post) {
+    const { author, content} = post;
+    const newPost = { author, content, id:currentID++ };
+    posts.push(newPost);
+    return newPost;
+}
+
 function updatePostById(id, newPost) {
-    // 不再从 req.body 中取出数据了，改为从 newPost 中取数据
     const { author, content } = newPost;
     const post = posts.find(function(i) {
         return i.id === Number(id);
@@ -42,11 +40,16 @@ function getPostIndexById(id) {
     });
 }
 
+function doesIdExists(id) {
+    return getPostById(id) != -1;
+}
+
 module.exports = {
     getAllPost,
     addPost,
     getPostById,
     updatePostById,
     deletePostById,
-    getPostIndexById
+    getPostIndexById,
+    doesIdExists
 }
