@@ -12,7 +12,7 @@ router.get('/:id', validateId, getPostById);
 // GET /v1/posts
 router.get('/', getAllpost);
 
-router.post('', addPost);
+router.post('/', addPost);
 
 router.put('/:id', validateId, updatePostById);
 
